@@ -1,0 +1,231 @@
+<html>
+<head>
+<style>
+*{
+  margin: 0px;
+  padding: 0px;
+}
+
+.header {
+  overflow: hidden;
+  background-color: #606060;
+  color : white;
+  font-size : 20px;
+  font-family : Arial;
+  height: 60px;
+  padding: 20px 10px;
+}
+
+.card
+{
+	width : 30%;
+	margin: auto;
+	height : 300px;
+	margin-top : 15px;
+	border-style: dashed;
+	border-color : #E0E0E0;	
+}
+
+/* Style the header links */
+.header a {
+  float: left;
+  color: white;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+/* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
+.header a.logo {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+/* Change the background color on mouse-over */
+.header a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Style the active/current link*/
+.header a.active {
+  background-color: dodgerblue;
+  color: white;
+}
+
+/* Float the link section to the right */
+.header-right {
+  float: right;
+}
+
+/* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
+
+@media screen and (min-width: 360px) {
+
+.input100
+{
+	font-size : 20px;
+
+}
+}
+
+@media screen and (max-width: 980px) {
+  .card
+{
+	width : 75%;
+}
+
+
+
+}
+
+@media screen and (max-width: 280px) {
+  .card
+{
+	width : 85%;
+}
+.covid{
+	font-size:15px;
+
+}
+
+.line{
+	font-size:18px;
+
+}
+}
+
+
+@media screen and (max-width: 1100px) {
+  .card
+{
+	width : 75%;
+}
+
+.covid{
+	font-size:20px;
+
+}
+.line
+{
+	font-size:20px;
+
+}
+}
+
+@media screen and (max-width: 500px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .header {
+    height: 12%;
+  }
+  .header-right {
+    float: none;
+  }
+  .card
+{
+	width : 95%;
+}
+}
+.input100
+{
+	padding-left : 20px;
+	padding-top : 40px;
+	font-size : 13px;
+}
+
+
+input[type=button], input[type=submit], input[type=reset] {
+	 background: #0066A2;
+     color: white;
+     border-color: #0066A2;
+     height: 50px;
+     width: 120px;
+     font: bold 15px arial, sans-serif;
+     text-shadow:none;
+	 margin-top : 45px;
+}
+.line
+{ 
+	color : #6666FF;
+	padding-top : 20px;
+	padding-right : 10px;
+
+}
+p{
+font-size : 25px;
+}
+ul{
+    float: right;
+    list-style-type: none;
+}
+ul li{
+    display: inline-block;
+}
+ul li a{
+    text-decoration: none;
+    color: red;
+    padding: 5px 20px;
+    border: 1px solid transparent;
+}
+ul li a:hover{
+    background-color: #fff;
+    color:#000;
+    transition: 0.6s ease;
+}
+ul li.active a{
+    background-color: #fff;
+    color:#000;
+}
+
+html,body{
+	max-width:100%;
+	overflow-x:hidden;
+	}
+	
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div class="header">
+  <a href="#default" class="logo"><p class="covid">Covid-19 Prediction From Chest X-ray Images</p></a>
+  <div class="header-right">
+  </div>
+</div>
+</br>
+</br>
+</br>
+<center>
+
+<form action = "{{url_for('sowmya_predict')}}" enctype="multipart/form-data" method = "POST">
+<div class = "card">
+		<h1 class="line">Covid Detector</h1>
+		<input class="input100"  type="file" required id="fileName" accept=".png, .jpg, .jpeg , .jfif" onchange="validateFileType()" name="image_file"/>
+		<script type="text/javascript">
+			function validateFileType(){
+				var fileName = document.getElementById("fileName").value;
+				var idxDot = fileName.lastIndexOf(".") + 1;
+				var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+				if (extFile=="jpg" || extFile=="jpeg" || extFile=="png" || extFile=="jfif"){
+				}else{
+					alert("Only jpg/jpeg/jfif and png files are allowed!");
+					document.getElementById("fileName").value=null;
+				} 
+				
+			}
+		</script>
+		<span class="focus-input100"></span>
+		</br>
+		<input type="submit" value="Predict!"  align="center-right">
+</div>
+</form>
+</center>
+
+</body>
+</html>

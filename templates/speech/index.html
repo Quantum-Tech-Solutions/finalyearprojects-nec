@@ -1,0 +1,202 @@
+<html>
+<head>
+
+<title>Speech Emotion Recognition</title>
+<style>
+
+
+@media only screen and (min-width:300px) and (max-width:500px) { 
+div {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50px;
+  
+}
+
+.hd {
+  display: flex;
+  justify-content: space-around;
+  border: 5px solid black;
+  border-radius: 45px;
+  background-color: violet;
+}
+
+.head1 {
+  align-items: center;
+  font-size: 50px;
+  margin-top: 48px;
+  color:white;
+}
+
+.image {
+  margin-top: 5px;
+}
+
+.tab,.btn{
+font-size: 35px;
+}
+input.sec {
+    font-size: 28px;
+}
+}
+
+@media only screen and (min-width:500px) and (max-width:1050px) { 
+div {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50px;
+  
+}
+
+.hd {
+  display: flex;
+  justify-content: space-around;
+  border: 5px solid black;
+  border-radius: 45px;
+  background-color: violet;
+}
+
+.head1 {
+  align-items: center;
+  font-size: 50px;
+  margin-top: 48px;
+  color:white;
+}
+
+.image {
+  margin-top: 5px;
+}
+
+.tab,.btn{
+font-size: 35px;
+}
+
+input.sec {
+    font-size: 28px;
+}
+}
+@media only screen and (min-width:1100px) and (max-width:1600px) { 
+
+<!--html,body{
+overflow-y:scroll;
+overflow-x:hidden;
+}-->
+div {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50px;
+  
+}
+
+.hd {
+  display: flex;
+  justify-content: space-around;
+  border: 5px solid black;
+  border-radius: 45px;
+  background-color: violet;
+}
+
+.head1 {
+  align-items: center;
+  font-size: 50px;
+  margin-top: 48px;
+  color:white;
+}
+
+.image {
+  margin-top: 5px;
+}
+input.sec {
+    font-size: 28px;
+}
+}
+
+
+div {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50px;
+  
+}
+
+.hd {
+  display: flex;
+  justify-content: space-around;
+  border: 5px solid black;
+  border-radius: 45px;
+  background-color: violet;
+}
+
+.head1 {
+  align-items: center;
+  font-size: 50px;
+  margin-top: 48px;
+  color:white;
+}
+
+.image {
+  margin-top: 5px;
+}
+
+.para,.btn{
+font-size: 30px;
+}
+
+
+  </style>
+</head>
+<body>
+
+
+<header class="hd">
+    <img class="image" src="static\speech\images\logo.jfif" height="150" width="250" alt="This is CHARITY DONOR logo.">
+    <h1 class="head1"><font size = "6">SPEECH EMOTION RECOGNITION</font></h1>
+</header>
+
+<div>
+<br>
+<center>
+<table border='2' class="tab" style='width:60%;font-size:28px'>
+  <tr>
+    <th>EMOTIONS</th>
+    <th>EMOTION PREDICTION</th>
+  </tr>
+  <tr>
+    <td><center>Anger</center></td>
+<td rowspan='7' style="background-color:#90EE90;"><center><h4 style="color:red;">{{ prediction_text }}</h4></center></td>
+  </tr>
+  <tr>
+    <td><center>Disgust</center></td>
+  </tr>
+<tr>
+    <td><center>Fear</center></td>
+  </tr>
+<tr>
+    <td><center>Happy</center></td>
+  </tr>
+<tr>
+    <td><center>Neutral</center></td>
+  </tr>
+<tr>
+    <td><center>Sad</center></td>
+  </tr>
+<tr>
+    <td><center>Surprise</center></td>
+  </tr>
+</table>
+</center>
+
+<form action="{{ url_for('speech_predict') }}" method="post" enctype="multipart/form-data">
+<center><b><p class="para">Choose an audio file to find the emotion</p></b>
+<input type="file" class="sec" name="file" accept=".wav"></br>
+<button name="submit" class="btn" style="background-color:blue;color:white"><b><font size="5">CHECK FOR EMOTION</font></b></button></center>
+<br>
+</form>
+</div>
+	
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang=''>
+<head>
+<meta charset='utf-8'>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+   href= "{{ url_for('static',filename='ecg/styles/styles.css')}}">
+</head>
+<body>
+<div id='cssmenu'>
+<ul>
+<!-- <li><img  style="height:7vh; padding-right:4px;padding-left:4px;" src="static/ecg/images/icon.jpg" style=""></li> -->
+<li><label style="height:7vh;padding-right:4px;font-size:28px;font-weight:bold;margin-top:5px;
+padding-top:4px;">ECG Analysis</label></li>
+</ul>
+</div>
+<br><p style="font-size:20px;">An ECG (electrocardiogram) records the electrical activity of your heart at rest. It provides information about your heart rate and rhythm by measuring the electrical activity of the heartbeat. With each beat, an electrical impulse (or “wave”) travels through the heart.An ECG can provide clues about enlargement of the chambers or walls of the heart, heart defects.
+</p>
+<center>
+<form method="post" action="{{ url_for('ecg_predict') }}" enctype="multipart/form-data">
+   <center><h3>Check out here!</h3></center>
+   <center><h4>Upload your ECG report here</h4></center>
+   <input type="file" name="img_file" accept=".jpg">
+   <center><input style="background-color:#EE731D;color:white;width:70px;height:25px;font-size:17px;" type="submit"  value="Analyse"></center>
+</form>
+<h3 style="color:#4DC3FF">{{ prediction }}<h3>
+</center>
+</body>
+</html>

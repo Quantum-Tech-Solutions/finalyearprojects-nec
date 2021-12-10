@@ -1,0 +1,10 @@
+tensorflow==2.4.1
+flask
+requests
+flask-cors
+opencv-python
+keras==2.3.1
+werkzeug
+Pillow
+librosa
+pandas
