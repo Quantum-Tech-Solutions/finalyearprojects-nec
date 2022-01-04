@@ -6,6 +6,12 @@ from tensorflow.keras.models import load_model
 import numpy as np
 import cv2
 
+from flask import Flask, render_template,request
+import os
+from tensorflow.keras.models import load_model
+import numpy as np
+import cv2
+
 import os
 from tensorflow.keras.models import load_model
 import numpy as np
@@ -50,6 +56,9 @@ sowmya_model_path ="model/sowmya/model.h5"
 sowmya_model=load_model(sowmya_model_path,compile=False)
 
 ecg_model = load_model('model/ecg/model.h5')
+
+diabetics_model = './model/diabetics/model.h5'
+saved_model = load_model(diabetics_model,compile=False)
 
 @app.route('/uday')
 def hello():
@@ -254,7 +263,37 @@ def ecg_predict():
     except:
         traceback.print_exc()
 
+@app.route('/diabetics', methods=['GET'])
+def diabetics_index():
+    return render_template('diabetics/index.html')
 
+@app.route('/diabetics/predict',methods=['GET','POST'])
+def diabetics_predict():
+    if request.method == 'POST':
+        image_file = request.files['file']
+        path = os.path.join(app.config['UPLOAD_FOLDER'], image_file.filename)
+        image_file.save(path)
+        img = cv2.imread(path)
+        img = cv2.resize(img,(64,64))
+        img = np.reshape(img,[1,64,64,3])
+        d = saved_model.predict(img) 
+        print(d)
+        r=d[0][0]
+        r=round(r)-2
+        if(r==0):
+            result = 'No DR'
+        elif(r==1):
+            result = 'Mild DR'
+        elif(r==2):
+            result='Moderate DR'
+        elif(r==3):
+            result='Severe DR'
+        else:
+            result='Proliferative DR'
+        
+        return result
+    else:
+        return 'there is no scanned image attached'
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1',debug=False,port=5000)

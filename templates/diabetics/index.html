@@ -1,0 +1,133 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+
+        body {
+            overflow-x: hidden !important;
+            background-image: url('static/diabetics/images/d5.jpg');
+            background-position:center;
+            background-repeat:none;
+            background-size:cover;
+          }
+              
+          @media screen and (min-width: 280px) {
+            body {
+              overflow-x: hidden !important;	
+          }
+          .container {
+              max-width: 100% !important;
+              overflow-x: hidden !important;
+          }
+          }
+          
+          @media screen and (min-width: 480px) {
+            body {
+              overflow-x: hidden !important;
+              
+          }
+          .container {
+              max-width: 100% !important;
+              overflow-x: hidden !important;
+          }
+          
+          }
+          @media screen and (min-width: 600px) {
+            body {
+              overflow-x: hidden !important;
+              
+          }
+          .container {
+              max-width: 100% !important;
+              overflow-x: hidden !important;
+          }
+          
+          }
+
+	@media screen and (min-width: 280px) {
+  body {
+    overflow-x: hidden !important;
+	
+}
+.container {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}
+ 
+}
+@media screen and (min-width: 480px) {
+  body {
+    overflow-x: hidden !important;
+	
+}
+.container {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}
+  
+}
+@media screen and (min-width: 600px) {
+  body {
+    overflow-x: hidden !important;
+	
+}
+.container {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}
+}
+ 
+</style>
+
+<link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link href="{{ url_for('static', filename='diabetics/css/main.css') }}" rel="stylesheet">      
+    <script src="{{ url_for('static', filename='diabetics/js/main.js') }}" type="text/javascript"></script>    
+</head>
+<h4>DIABETIC RETINOPATHY PREDICTION</h4>
+<br/>
+
+<div>
+    <form id="upload-file" action="{{url_for('diabetics_predict')}}" method="post" enctype="multipart/form-data">
+        <label for="imageUpload" class="upload-label">
+            Choose a scanned image of retina...
+        </label>
+        <input type="file" name="file" id="imageUpload" accept=".png, .jpg, .jpeg " onchange="validateFileType()" >
+		<script type="text/javascript">
+		function validateFileType()
+		{
+		var imageUpload= document.getElementById("imageUpload").value;
+		var idxDot=imageUpload.lastIndexOf(".") + 1;
+		var extFile=imageUpload.substr(idxDot,imageUpload.length).toLowerCase();
+		if(extFile=="jpg" || extFile=="jpeg" || extFile=="png" )
+		{}
+		else
+		{
+			if(!alert("Only jpg/jpeg and png files are allowed!")){window.location.reload();}
+		}
+		}
+		</script>
+    </form>
+
+    <div class="image-section" style="display:none;">
+        <div class="img-preview">
+            <div id="imagePreview">
+            </div>
+        </div>
+        <div>
+            <button type="button" class="btn btn-primary btn-lg " id="btn-predict">Predict!</button>
+        </div>
+		
+    </div>
+
+    <div class="loader" style="display:none;"></div>
+    
+<h3 id="result">
+        <span> </span>
+    </h3>
+	
+</div>
+
+</html>
